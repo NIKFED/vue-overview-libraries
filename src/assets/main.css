@@ -1,2 +1,29 @@
 @import "./base.css";
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+
+.my_font {
+    font-family: 'Dancing Script', cursive;
+    letter-spacing: 0px;
+    word-spacing: 0px;
+    color: #000000;
+    text-decoration: none;
+    font-style: oblique;
+    font-variant: small-caps;
+    text-transform: none;
+}
+
+.my-card, input {
+    border-radius: 5px;
+    border: solid 1px lightgrey;
+    padding: 10px;
+}

@@ -6,7 +6,6 @@ import { ref } from 'vue';
 const taskList = ref([]);
 
 const addTask = ({ title, description }) => {
-    console.log()
     taskList.value = [...taskList.value, {
         id: taskList.value.length > 0 ? taskList.value.at(-1).id + 1 : 0,
         title,

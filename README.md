@@ -1,6 +1,8 @@
 # vue-overview-libraries
 
-This template should help get you started developing with Vue 3 in Vite.
+Frontend technology testing:
+1. Vite
+2. Vue 3 + Composition API
 
 ## Compile and Hot-Reload for Development
 

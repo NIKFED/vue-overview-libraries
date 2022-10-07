@@ -1,3 +1,21 @@
+<script setup>
+    const props = defineProps({
+        model: {
+            required: true,
+        },
+    });
+
+    const emit = defineEmits(['onDone', 'onRemove']);
+
+    const emitOnDone = () => {
+        emit('onDone');
+    };
+
+    const emitOnRemove = () => {
+        emit('onRemove');
+    };
+</script>
+
 <template>
     <div class="d-flex justify-content-between align-items-center my-card">
         <div>
@@ -20,24 +38,6 @@
         </div>
     </div>
 </template>
-
-<script setup>
-const props = defineProps({
-    model: {
-        required: true,
-    },
-});
-
-const emit = defineEmits(['onDone', 'onRemove']);
-
-const emitOnDone = () => {
-    emit('onDone');
-};
-
-const emitOnRemove = () => {
-    emit('onRemove');
-};
-</script>
 
 <style scoped>
 

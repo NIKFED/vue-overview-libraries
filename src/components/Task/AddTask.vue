@@ -1,3 +1,27 @@
+<script setup>
+    import { ref } from 'vue';
+
+    const emit = defineEmits({
+        onAddTask({ title, description }) {
+            if (title === '' || description === '') {
+                alert('Fill title and description please!');
+                return false;
+            }
+            return true;
+        }
+    });
+
+    const title = ref('');
+    const description = ref('');
+
+    const onAddTask = () => {
+        emit('onAddTask', {
+            title: title.value,
+            description: description.value,
+        });
+    };
+</script>
+
 <template>
     <div class="d-grid gap-2">
         <input v-model="title"
@@ -15,35 +39,6 @@
         </button>
     </div>
 </template>
-
-<script setup>
-import { ref } from 'vue';
-
-const props = defineProps({
-
-});
-
-const emit = defineEmits({
-    onAddTask({ title, description }) {
-        if (title === '' || description === '') {
-            alert('Fill title and description please!');
-            return false;
-        }
-        return true;
-    }
-});
-
-const title = ref('');
-const description = ref('');
-
-const onAddTask = () => {
-    emit('onAddTask', {
-        title: title.value,
-        description: description.value,
-    });
-}
-
-</script>
 
 <style scoped>
 

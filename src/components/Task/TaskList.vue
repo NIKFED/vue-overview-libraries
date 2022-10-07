@@ -1,52 +1,55 @@
 <script setup>
 import TaskCard from './TaskCard.vue';
-import AddTask from "./AddTask.vue";
 import { ref } from 'vue';
+import { useToggle } from "../../composition/toggle";
 
-const taskList = ref([]);
+const props = defineProps({
+    tasks: {
+        required: false,
+        default: [],
+    },
+});
 
-const addTask = ({ title, description }) => {
-    taskList.value = [...taskList.value, {
-        id: taskList.value.length > 0 ? taskList.value.at(-1).id + 1 : 0,
-        title,
-        description,
-        status: false
-    }];
-}
+const emit = defineEmits(['onDone', 'onRemove']);
 
-const setDoneTask = (id) => {
-    taskList.value = taskList.value.map(item => {
-        if (item.id === id) {
-            item.status = true;
-        }
-        return item;
-    });
+const emitOnDone = (id) => {
+    emit('onDone', id);
 };
 
-const removeTask = (id) => {
-    taskList.value = taskList.value.filter(item => item.id !== id);
+const emitOnRemove = (id) => {
+    emit('onRemove', id);
 };
+
+const { visible: show, toggle: changeShow } = useToggle();
 </script>
 
 <template>
     <div>
-        <h1 class="my_font fw-semibold">Todo List</h1>
+        <div class="d-flex justify-content-between">
+            <div class="h1 my_font fw-semibold">
+                Todo List
+            </div>
+            <button class="btn btn-lg" @click="changeShow">
+                <i class="bi bi-arrows-collapse"></i>
+            </button>
+        </div>
 
-        <AddTask @onAddTask="addTask"></AddTask>
 
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item"
-                v-for="item in taskList"
-                :key="item.id"
+        <ul v-if="show" class="list-group list-group-flush">
+            <li v-if="tasks.length > 0" class="list-group-item"
+                v-for="task in tasks"
+                :key="task.id"
             >
-                <TaskCard :model="item"
-                          @onRemove="removeTask(item.id)"
-                          @onDone="setDoneTask(item.id)"
-                ></TaskCard>
+                <TaskCard :task="task"
+                          @onDone="emitOnDone(task.id)"
+                          @onRemove="emitOnRemove(task.id)"
+                />
             </li>
+            <div v-else class="my_font">
+                No tasks
+            </div>
         </ul>
     </div>
-
 </template>
 
 <style scoped>

@@ -1,43 +1,48 @@
 <script setup>
-    import { ref } from 'vue';
+import { useToggle } from "../../composition/toggle";
+import { useForm } from "../../composition/form";
 
-    const emit = defineEmits({
-        onAddTask({ title, description }) {
-            if (title === '' || description === '') {
-                alert('Fill title and description please!');
-                return false;
-            }
-            return true;
-        }
+const emit = defineEmits(['onAddTask']);
+
+const onAddTask = () => {
+    emit('onAddTask', {
+        title: form.title,
+        description: form.description,
     });
+};
 
-    const title = ref('');
-    const description = ref('');
-
-    const onAddTask = () => {
-        emit('onAddTask', {
-            title: title.value,
-            description: description.value,
-        });
-    };
+const { form: form, valid: valid } = useForm();
+const { visible: show, toggle: changeShow } = useToggle();
 </script>
 
 <template>
-    <div class="d-grid gap-2">
-        <input v-model="title"
-               placeholder="Title"
-               type="text"
-        >
-        <input v-model="description"
-               placeholder="Description"
-               type="text"
-        >
-        <button class="btn btn-lg"
-                @click="onAddTask"
-        >
-            <i class="bi bi-plus-circle"></i>
-        </button>
-    </div>
+    <form class="form">
+        <div class="d-flex justify-content-between">
+            <div class="h1 my_font fw-semibold">
+                Add Todo
+            </div>
+            <button class="btn btn-lg" @click="changeShow">
+                <i class="bi bi-arrows-collapse"></i>
+            </button>
+        </div>
+
+        <div v-if="show" class="d-grid gap-2">
+            <input v-model="form.title"
+                   placeholder="Title"
+                   type="text"
+            >
+            <input v-model="form.description"
+                   placeholder="Description"
+                   type="text"
+            >
+            <button class="btn btn-lg"
+                    :disabled="!valid"
+                    @click="onAddTask"
+            >
+                <i class="bi bi-plus-circle"></i>
+            </button>
+        </div>
+    </form>
 </template>
 
 <style scoped>

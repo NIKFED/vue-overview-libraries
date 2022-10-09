@@ -26,6 +26,11 @@
                 Todo list
               </router-link>
             </li>
+            <li class="nav-item">
+              <router-link class="nav-link active" to="/desires">
+                User desires
+              </router-link>
+            </li>
           </ul>
         </div>
       </div>

@@ -18,7 +18,7 @@ const { visible: show, toggle: changeShow } = useToggle();
 <template>
     <form class="form">
         <div class="d-flex justify-content-between">
-            <div class="h1 my_font fw-semibold">
+            <div class="h1 dancing_font fw-semibold">
                 Add Todo
             </div>
             <button class="btn btn-lg" @click="changeShow">

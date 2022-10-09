@@ -20,8 +20,8 @@ const emitOnRemove = () => {
 <template>
     <div class="d-flex justify-content-between align-items-center my-card">
         <div>
-            <h4 class="my_font fw-semibold">{{ task.title }}</h4>
-            <p class="my_font">{{ task.description }}</p>
+            <h4 class="dancing_font fw-semibold">{{ task.title }}</h4>
+            <p class="dancing_font">{{ task.description }}</p>
         </div>
         <div>
             <button v-if="!task.status"

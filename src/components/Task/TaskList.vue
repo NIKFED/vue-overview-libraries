@@ -26,7 +26,7 @@ const { visible: show, toggle: changeShow } = useToggle();
 <template>
     <div>
         <div class="d-flex justify-content-between">
-            <div class="h1 my_font fw-semibold">
+            <div class="h1 dancing_font fw-semibold">
                 Todo List
             </div>
             <button class="btn btn-lg" @click="changeShow">
@@ -45,7 +45,7 @@ const { visible: show, toggle: changeShow } = useToggle();
                           @onRemove="emitOnRemove(task.id)"
                 />
             </li>
-            <div v-else class="my_font">
+            <div v-else class="dancing_font">
                 No tasks
             </div>
         </ul>

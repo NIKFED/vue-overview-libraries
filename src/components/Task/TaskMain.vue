@@ -14,6 +14,7 @@ const {
 <template>
     <div>
         <AddTask @onAddTask="addTask"/>
+        <hr>
         <TaskList :tasks="taskList"
                   @onDone="completeTask"
                   @onRemove="removeTask"

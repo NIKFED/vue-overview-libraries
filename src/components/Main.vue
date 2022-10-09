@@ -8,6 +8,9 @@ const completed = ref([
     {
         title: 'Vue router 4',
     },
+    {
+        title: 'Vuex 4',
+    },
 ]);
 </script>
 

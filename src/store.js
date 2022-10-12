@@ -39,7 +39,7 @@ const store = createStore({
     actions: {
         async fetchUser(ctx) {
             const response = await fetch(
-                "https://my-json-server.typicode.com/typicode/demo/profile"
+                "https://my-json-server.typicode.com/NIKFED/json-server/profile"
             );
             const user = await response.json();
             ctx.commit('updateUser', user);
